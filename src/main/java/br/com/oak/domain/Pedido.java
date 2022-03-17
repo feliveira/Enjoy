@@ -79,7 +79,7 @@ public class Pedido {
 	}
 
 	public double getValorTotal() {
-		bebida.forEach(bebida -> valorTotal += bebida.getValorTotal());
+		bebida.forEach(bebida -> valorTotal += bebida.getValorBebida());
 		return valorTotal;
 	}
 
