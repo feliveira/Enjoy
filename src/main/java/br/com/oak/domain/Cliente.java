@@ -2,13 +2,16 @@ package br.com.oak.domain;
 
 import java.time.LocalDate;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
 import javax.persistence.Table;
 
 @Entity
@@ -35,16 +38,29 @@ public class Cliente {
     @Column(name="ds_genero")
     private String genero;
     
-//	@JoinColumn(name = "id_pedido")
-//	@OneToMany
-//	private Pedido pedido;
+	@JoinColumn(name = "id_pedido")
+	@ManyToOne
+	private Pedido pedido;
     
     
     public Cliente() {
     	
-    
-    	
     }
+
+    
+    
+	public Cliente(Long id, String nome, String telefone, String email, LocalDate dtNasc, String genero,
+			Pedido pedido) {
+		this.id = id;
+		this.nome = nome;
+		this.telefone = telefone;
+		this.email = email;
+		this.dtNasc = dtNasc;
+		this.genero = genero;
+		this.pedido = pedido;
+	}
+
+
 
 	public Long getId() {
 		return id;
@@ -93,9 +109,16 @@ public class Cliente {
 	public void setGenero(String genero) {
 		this.genero = genero;
 	}
-    
-    
-    
-    
 
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
+	
+	
+    
+    
 }
