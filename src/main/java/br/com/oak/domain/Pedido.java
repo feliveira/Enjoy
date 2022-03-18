@@ -9,39 +9,43 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 public class Pedido {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_pedido")
 	private Long id;
-	
+
 	@Column(name = "dt_pedido")
 	private LocalDate dataPedido;
-	
+
 	@JoinColumn(name = "id_cliente")
 	@ManyToOne
 	private Cliente cliente;
-	
-	@OneToMany(mappedBy = "pedido")
-	private List<Bebida> bebida;
-	
+
+    @ManyToMany(mappedBy="pedidos")
+	private List<Bebida> bebidas;
+
 	@Column(name = "vl_total")
 	private double valorTotal;
-	
+
 	public Pedido() {
-		
+
 	}
 
-	public Pedido(LocalDate dataPedido, Cliente cliente, List<Bebida> bebida, double valorTotal) {
+	public Pedido(Long id, LocalDate dataPedido, Cliente cliente, List<Bebida> bebidas, double valorTotal) {
+		super();
+		this.id = id;
 		this.dataPedido = dataPedido;
 		this.cliente = cliente;
-		this.bebida = bebida;
+		this.bebidas = bebidas;
 		this.valorTotal = valorTotal;
 	}
 
@@ -69,16 +73,15 @@ public class Pedido {
 		this.cliente = cliente;
 	}
 
-	public List<Bebida> getBebida() {
-		return bebida;
+	public List<Bebida> getBebidas() {
+		return bebidas;
 	}
 
-	public void setBebida(List<Bebida> bebida) {
-		this.bebida = bebida;
+	public void setBebidas(List<Bebida> bebidas) {
+		this.bebidas = bebidas;
 	}
 
 	public double getValorTotal() {
-		bebida.forEach(bebida -> valorTotal += bebida.getValorBebida());
 		return valorTotal;
 	}
 
@@ -86,4 +89,7 @@ public class Pedido {
 		this.valorTotal = valorTotal;
 	}
 	
+	
+	
+
 }
