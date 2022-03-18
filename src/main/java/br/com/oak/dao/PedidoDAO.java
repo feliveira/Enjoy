@@ -5,17 +5,17 @@ import javax.persistence.EntityManager;
 import br.com.oak.domain.Cliente;
 import br.com.oak.domain.Pedido;
 
-public class PedidoDAO extends GenericDAO<Cliente, Long>{
+public class PedidoDAO extends GenericDAO<Pedido, Long>{
 
 	public PedidoDAO(EntityManager em) {
 		super(em);
 	}
 	
-	public Cliente ticketMedio(String nome) {
-		return em.createQuery("from Cliente p where p.nome = :i", Cliente.class)
-				.setParameter("i", nome)
+	public Double ticketMedio(long ticketMedio) {
+		return  em.createQuery("select avg(valorTotal) from Pedido where cliente.id = :idCliente", Double.class)
+				.setParameter("idCliente", ticketMedio)
 				.getSingleResult();
-		
-	}
 
+
+}
 }

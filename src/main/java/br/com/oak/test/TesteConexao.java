@@ -22,9 +22,9 @@ public class TesteConexao {
 		
 		PedidoDAO dao = new PedidoDAO(em);
 		
-		Cliente pedidos =  dao.ticketMedio("Dani");
+		Double pedidos =  dao.ticketMedio(1l);
 		
-		System.out.println(pedidos.getNome() + pedidos.getEmail());
+		System.out.println(pedidos);
 
 		em.close();
 		teste.close();
