@@ -15,7 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TB_CLIENTE")
 public class Cliente {
 	
 	@Id
@@ -49,9 +48,8 @@ public class Cliente {
 
     
     
-	public Cliente(Long id, String nome, String telefone, String email, LocalDate dtNasc, String genero,
+	public Cliente(String nome, String telefone, String email, LocalDate dtNasc, String genero,
 			Pedido pedido) {
-		this.id = id;
 		this.nome = nome;
 		this.telefone = telefone;
 		this.email = email;

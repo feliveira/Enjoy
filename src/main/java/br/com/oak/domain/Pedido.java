@@ -14,7 +14,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TB_PEDIDO")
 public class Pedido {
 	
 	@Id
