@@ -16,4 +16,6 @@ public class PedidoDAO extends GenericDAO<Pedido, Long> {
 				.setParameter("idCliente", ticketMedio).getSingleResult();
 
 	}
+	
+	
 }
