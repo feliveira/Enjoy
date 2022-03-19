@@ -3,14 +3,16 @@
 	<persistence-unit name="onboarding">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<class>br.com.oak.domain.Cliente</class>
+		<class>br.com.oak.domain.Pedido</class>
+		<class>br.com.oak.domain.Bebida</class>
 		
 		<properties>
 			<property name="hibernate.show_sql" value="true"/>
-			<property name="hibernate.hbm2ddl.auto" value="update"/>
+			<property name="hibernate.hbm2ddl.auto" value="create"/>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle12cDialect"/>
 			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
-			<property name="javax.persistence.jdbc.user" value="RM88627"/>
-			<property name="javax.persistence.jdbc.password" value="261196"/>
+			<property name="javax.persistence.jdbc.user" value="RM88325"/>
+			<property name="javax.persistence.jdbc.password" value="150296"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@oracle.fiap.com.br:1521:orcl"/>
 		</properties>	
 	</persistence-unit>
