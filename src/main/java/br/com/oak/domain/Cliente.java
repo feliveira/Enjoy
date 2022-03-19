@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 
 import javax.persistence.Table;
 
-@Entity
+@Entity(name = "TB_CLIENTE")
 public class Cliente {
 	
 	@Id
@@ -37,23 +37,21 @@ public class Cliente {
     @Column(name="ds_genero")
     private String genero;
     
-	@JoinColumn(name = "id_pedido")
-	@ManyToOne
-	private Pedido pedido;
+//	@JoinColumn(name = "id_pedido")
+//	@ManyToOne
+//	private Pedido pedido;
     
     
     public Cliente() {
     	
     }
     
-	public Cliente(String nome, String telefone, String email, LocalDate dtNasc, String genero,
-			Pedido pedido) {
+	public Cliente(String nome, String telefone, String email, LocalDate dtNasc, String genero) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.email = email;
 		this.dtNasc = dtNasc;
 		this.genero = genero;
-		this.pedido = pedido;
 	}
 
 	public Long getId() {
@@ -104,13 +102,13 @@ public class Cliente {
 		this.genero = genero;
 	}
 
-	public Pedido getPedido() {
-		return pedido;
-	}
-
-	public void setPedido(Pedido pedido) {
-		this.pedido = pedido;
-	}
+//	public Pedido getPedido() {
+//		return pedido;
+//	}
+//
+//	public void setPedido(Pedido pedido) {
+//		this.pedido = pedido;
+//	}
 	
 	
     

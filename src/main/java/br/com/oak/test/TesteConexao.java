@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import br.com.oak.dao.ClienteDAO;
 import br.com.oak.dao.PedidoDAO;
 
 
@@ -18,12 +19,17 @@ public class TesteConexao {
 		
 		EntityManager em = teste.createEntityManager();
 		
-		PedidoDAO dao = new PedidoDAO(em);
+		PedidoDAO pedidoDao = new PedidoDAO(em);
+//		Double pedidos =  dao.ticketMedio(1l);
+//		System.out.println("A média do cliente é: " + pedidos);
 		
-		Double pedidos =  dao.ticketMedio(1l);
+//		ClienteDAO clienteDAO = new ClienteDAO(em);
+//		Long idCliente = clienteDAO.findClienteByTelefone("991548795");
+//		System.out.println("O id é: " + idCliente);
 		
-		System.out.println("A mï¿½dia do cliente ï¿½: " + pedidos);
-
+		Long frequencia = pedidoDao.frequencia(1L);
+		System.out.println("A frequência dos últimos 30 dias é: " + frequencia);
+		
 		em.close();
 		teste.close();
         
