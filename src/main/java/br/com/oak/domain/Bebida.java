@@ -22,10 +22,10 @@ public class Bebida {
     private String nome;
     
     @Column(name = "nr_quantidade", nullable = false)
-    private Integer quantidade;
+    private double quantidade;
     
-    @Column(name = "sm_valorLitro", nullable = false)
-    private Integer valorLitro;
+    @Column(name = "vl_litro", nullable = false)
+    private double valorLitro;
 	
 	@JoinColumn(name = "id_pedido")
 	@ManyToOne
@@ -63,7 +63,7 @@ public class Bebida {
 		this.nome = nome;
 	}
 
-	public Integer getQuantidade() {
+	public double getQuantidade() {
 		return quantidade;
 	}
 
@@ -71,7 +71,7 @@ public class Bebida {
 		this.quantidade = quantidade;
 	}
 
-	public Integer getValorLitro() {
+	public double getValorLitro() {
 		return valorLitro;
 	}
 
