@@ -12,6 +12,7 @@ public class TesteConexao {
 	
 	public static void main(String[] args) {
 		
+
 		
 		EntityManagerFactory teste =  Persistence.createEntityManagerFactory("onboarding");
 		
@@ -21,10 +22,11 @@ public class TesteConexao {
 		
 		Double pedidos =  dao.ticketMedio(1l);
 		
-		System.out.println("A média do cliente é: " + pedidos);
+		System.out.println("A mï¿½dia do cliente ï¿½: " + pedidos);
 
 		em.close();
 		teste.close();
+        
 	}
 		
 

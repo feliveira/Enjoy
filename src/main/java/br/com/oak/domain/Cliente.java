@@ -45,8 +45,6 @@ public class Cliente {
     public Cliente() {
     	
     }
-
-    
     
 	public Cliente(String nome, String telefone, String email, LocalDate dtNasc, String genero,
 			Pedido pedido) {
@@ -57,8 +55,6 @@ public class Cliente {
 		this.genero = genero;
 		this.pedido = pedido;
 	}
-
-
 
 	public Long getId() {
 		return id;

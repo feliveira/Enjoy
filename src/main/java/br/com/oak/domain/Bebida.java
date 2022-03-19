@@ -33,14 +33,12 @@ public class Bebida {
 	@ManyToMany
 	@JoinTable(joinColumns = @JoinColumn(name = "id_bebida"), inverseJoinColumns = @JoinColumn(name = "id_pedido"), name = "TB_BEBIDA_PEDIDO")
 	private List<Pedido> pedidos;
+    
+    public Bebida() {
+    	super();
+    }
 
-	public Bebida() {
-		super();
-	}
-
-	public Bebida(Long id, String nome, Integer quantidade, Integer valorLitro, List<Pedido> pedidos) {
-		super();
-		this.id = id;
+	public Bebida(String nome, Integer quantidade, Integer valorLitro) {
 		this.nome = nome;
 		this.quantidade = quantidade;
 		this.valorLitro = valorLitro;
@@ -63,7 +61,7 @@ public class Bebida {
 		this.nome = nome;
 	}
 
-	public Integer getQuantidade() {
+	public double getQuantidade() {
 		return quantidade;
 	}
 
@@ -71,7 +69,7 @@ public class Bebida {
 		this.quantidade = quantidade;
 	}
 
-	public Integer getValorLitro() {
+	public double getValorLitro() {
 		return valorLitro;
 	}
 
@@ -86,7 +84,5 @@ public class Bebida {
 	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
 	}
-	
-	
 
 }

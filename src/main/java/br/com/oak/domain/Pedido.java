@@ -22,8 +22,8 @@ public class Pedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_pedido")
 	private Long id;
-
-	@Column(name = "dt_pedido")
+	
+	@Column(name = "dt_pedido", nullable = false)
 	private LocalDate dataPedido;
 
 	@JoinColumn(name = "id_cliente")
@@ -32,8 +32,8 @@ public class Pedido {
 
     @ManyToMany(mappedBy="pedidos")
 	private List<Bebida> bebidas;
-
-	@Column(name = "vl_total")
+	
+	@Column(name = "vl_total", nullable = false)
 	private double valorTotal;
 
 	public Pedido() {
