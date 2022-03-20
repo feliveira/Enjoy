@@ -1,20 +1,19 @@
 package br.com.oak.domain;
 
 import java.time.LocalDate;
-
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import javax.persistence.Table;
 
 @Entity
+@Table(name = "TB_CLIENTE")
 public class Cliente {
 	
 	@Id
@@ -22,43 +21,43 @@ public class Cliente {
     @Column(name = "id_cliente")
     private Long id;
 	
-    @Column(name = "nm_cliente")
+    @Column(name = "nm_cliente", nullable = false, length = 50)
     private String nome;
     
-    @Column(name="nr_telefone")
+    @Column(name="nr_telefone", nullable = false, unique = true, length = 11)
     private String telefone;
     
-    @Column(name="ds_email")
+    @Column(name= "cpf_cliente", unique = true, length = 11)
+    private String cpf;
+    
+    @Column(name="ds_email", unique = true, length = 50)
     private String email;
     
     @Column(name = "dt_nascimento")
     private LocalDate dtNasc;
     
-    @Column(name="ds_genero")
+    @Column(name="ds_genero", length = 15)
     private String genero;
     
-	@JoinColumn(name = "id_pedido")
-	@ManyToOne
-	private Pedido pedido;
+	@OneToMany(mappedBy = "cliente")
+	private List<Pedido> pedidos;
     
     
     public Cliente() {
-    	
+		super();
     }
-
     
-    
-	public Cliente(String nome, String telefone, String email, LocalDate dtNasc, String genero,
-			Pedido pedido) {
+	public Cliente(String nome, String telefone, String email, String cpf, LocalDate dtNasc, String genero,
+			List<Pedido> pedidos) {
+		super();
 		this.nome = nome;
 		this.telefone = telefone;
+		this.cpf = cpf;
 		this.email = email;
 		this.dtNasc = dtNasc;
 		this.genero = genero;
-		this.pedido = pedido;
+		this.pedidos = pedidos;
 	}
-
-
 
 	public Long getId() {
 		return id;
@@ -82,6 +81,14 @@ public class Cliente {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+	
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public String getEmail() {
@@ -108,15 +115,12 @@ public class Cliente {
 		this.genero = genero;
 	}
 
-	public Pedido getPedido() {
-		return pedido;
+	public List<Pedido> getPedido() {
+		return pedidos;
 	}
 
-	public void setPedido(Pedido pedido) {
-		this.pedido = pedido;
+	public void setPedido(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
 	}
 	
-	
-    
-    
 }
