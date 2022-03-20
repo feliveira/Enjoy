@@ -3,6 +3,7 @@ package br.com.oak.domain;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,40 +12,40 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TB_PEDIDO")
-public class Pedido {
+@Table(name = "TB_COMANDA5")
+public class Comanda {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_pedido")
+	@Column(name = "id_comanda")
 	private Long id;
 	
-	@Column(name = "dt_pedido", nullable = false)
-	private LocalDate dataPedido;
+	@Column(name = "dt_comanda", nullable = false)
+	private LocalDate dataComanda;
 	
-	@Column(name = "vl_total", nullable = false)
-	private double valorTotal;
+	@Column(name = "vl_total")
+	private double valorTotal = 0.0;
 	
 	@JoinColumn(name = "id_cliente")
 	@ManyToOne
 	private Cliente cliente;
 	
-    @ManyToMany(mappedBy="pedidos")
-	private List<Bebida> bebidas;
+	@OneToMany(mappedBy = "comanda")
+	private List<Consumo> consumos;
 	
-	public Pedido() {
+	public Comanda() {
 		super();
 	}
 
-	public Pedido(LocalDate dataPedido, Cliente cliente, List<Bebida> bebidas, double valorTotal) {
+	public Comanda(LocalDate dataComanda, Cliente cliente, List<Consumo> consumos) {
 		super();
-		this.dataPedido = dataPedido;
+		this.dataComanda = dataComanda;
 		this.cliente = cliente;
-		this.bebidas = bebidas;
-		this.valorTotal = valorTotal;
+		this.consumos = consumos;
 	}
 
 	public Long getId() {
@@ -55,12 +56,12 @@ public class Pedido {
 		this.id = id;
 	}
 
-	public LocalDate getDataPedido() {
-		return dataPedido;
+	public LocalDate getDataComanda() {
+		return dataComanda;
 	}
 
-	public void setDataPedido(LocalDate dataPedido) {
-		this.dataPedido = dataPedido;
+	public void setDataPedido(LocalDate dataComanda) {
+		this.dataComanda = dataComanda;
 	}
 
 	public Cliente getCliente() {
@@ -71,21 +72,21 @@ public class Pedido {
 		this.cliente = cliente;
 	}
 
-	public List<Bebida> getBebidas() {
-		return bebidas;
-	}
-
-	public void setBebida(List<Bebida> bebidas) {
-		this.bebidas = bebidas;
-	}
-
 	public double getValorTotal() {
-		bebidas.forEach(bebida -> valorTotal += bebida.getValorBebida());
+		consumos.forEach(consumo -> valorTotal += consumo.getValorConsumo());
 		return valorTotal;
 	}
 
 	public void setValorTotal(double valorTotal) {
 		this.valorTotal = valorTotal;
+	}
+	
+	public List<Consumo> getConsumos() {
+		return consumos;
+	}
+
+	public void setConsumo(List<Consumo> consumos) {
+		this.consumos = consumos;
 	}
 	
 }

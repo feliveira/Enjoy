@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TB_CLIENTE")
+@Table(name = "TB_CLIENTE5")
 public class Cliente {
 	
 	@Id
@@ -40,7 +40,7 @@ public class Cliente {
     private String genero;
     
 	@OneToMany(mappedBy = "cliente")
-	private List<Pedido> pedidos;
+	private List<Comanda> comandas;
     
     
     public Cliente() {
@@ -48,7 +48,7 @@ public class Cliente {
     }
     
 	public Cliente(String nome, String telefone, String email, String cpf, LocalDate dtNasc, String genero,
-			List<Pedido> pedidos) {
+			List<Comanda> comandas) {
 		super();
 		this.nome = nome;
 		this.telefone = telefone;
@@ -56,7 +56,7 @@ public class Cliente {
 		this.email = email;
 		this.dtNasc = dtNasc;
 		this.genero = genero;
-		this.pedidos = pedidos;
+		this.comandas = comandas;
 	}
 
 	public Long getId() {
@@ -115,12 +115,12 @@ public class Cliente {
 		this.genero = genero;
 	}
 
-	public List<Pedido> getPedido() {
-		return pedidos;
+	public List<Comanda> getComanda() {
+		return comandas;
 	}
 
-	public void setPedido(List<Pedido> pedidos) {
-		this.pedidos = pedidos;
+	public void setComanda(List<Comanda> comandas) {
+		this.comandas = comandas;
 	}
 	
 }

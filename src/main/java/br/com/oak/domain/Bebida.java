@@ -2,6 +2,7 @@ package br.com.oak.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,10 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TB_BEBIDA")
+@Table(name = "TB_BEBIDA5")
 public class Bebida {
 	
 	@Id
@@ -24,31 +26,18 @@ public class Bebida {
     @Column(name = "nm_bebida", nullable = false, length = 50)
     private String nome;
     
-    @Column(name = "nr_quantidade", nullable = false)
-    private Integer quantidade;
-    
     @Column(name = "vl_litro", nullable = false)
     private Integer valorLitro;
-	
-	@ManyToMany
-	@JoinTable(joinColumns = @JoinColumn(name = "id_bebida"), inverseJoinColumns = @JoinColumn(name = "id_pedido"), name = "TB_BEBIDA_PEDIDO")
-	private List<Pedido> pedidos;
     
     public Bebida() {
     	super();
     }
 
-	public Bebida(Long id, String nome, Integer quantidade, Integer valorLitro, List<Pedido> pedidos) {
+	public Bebida(Long id, String nome, Integer valorLitro) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.quantidade = quantidade;
 		this.valorLitro = valorLitro;
-		this.pedidos = pedidos;
-	}
-	
-	public double getValorBebida() {
-		return quantidade * valorLitro;
 	}
 
 	public Long getId() {
@@ -67,14 +56,6 @@ public class Bebida {
 		this.nome = nome;
 	}
 
-	public Integer getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(Integer quantidade) {
-		this.quantidade = quantidade;
-	}
-
 	public Integer getValorLitro() {
 		return valorLitro;
 	}
@@ -83,12 +64,13 @@ public class Bebida {
 		this.valorLitro = valorLitro;
 	}
 	
-	public List<Pedido> getPedidos() {
-		return pedidos;
-	}
-
-	public void setPedidos(List<Pedido> pedidos) {
-		this.pedidos = pedidos;
-	}
+	
+//	public List<Pedido> getPedidos() {
+//		return pedidos;
+//	}
+//
+//	public void setPedidos(List<Pedido> pedidos) {
+//		this.pedidos = pedidos;
+//	}
 
 }
