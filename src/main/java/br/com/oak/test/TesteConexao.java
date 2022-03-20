@@ -21,17 +21,18 @@ public class TesteConexao {
 		Cliente idCliente = new Cliente();
 		idCliente = (Cliente) em.createQuery("FROM Cliente where telefone = :phone").setParameter("phone", telefoneCliente).getSingleResult();
 		
-		System.out.println("Cliente " + idCliente.getNome() );
+		System.out.println("Cliente: " + idCliente.getNome() );
 		
 		System.out.println("Data da última visita: " 
 		+ em.createQuery("SELECT cm.dataComanda FROM Comanda cm INNER JOIN Cliente c ON c.id = cm.cliente WHERE c.telefone = :phone ORDER BY cm.dataComanda DESC")
 		.setParameter("phone", idCliente.getTelefone()).setMaxResults(1).getSingleResult());
 		
-		System.out.println("Frequência de visitas: "); // Todo
+		System.out.println("Frequência de visitas: " +  em.createQuery("SELECT COUNT(DISTINCT(cm.dataComanda)) FROM Comanda cm WHERE cm.cliente = :idCliente").setParameter("idCliente", idCliente).getSingleResult()); 
 		
 		Double ticketMedio = em.createQuery("SELECT AVG(cm.valorTotal) FROM Comanda cm INNER JOIN Cliente c ON c.id = cm.cliente WHERE c.telefone = :phone", Double.class)
 				.setParameter("phone", idCliente.getTelefone()).getSingleResult();
-		System.out.printf("Ticket médio: %.2f\n", ticketMedio );
+		
+		System.out.printf("Ticket médio: R$%.2f\n", ticketMedio );
 		
 		System.out.println("Bebidas e Estilos favoritos:\n[1] Cerveja Pilsen \n[2] Chopp Trigo \n[3] Vinho Tinto "); // Todo
 
