@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TB_CONSUMO5")
+@Table(name = "TB_CONSUMO")
 public class Consumo {
 	
 	@Id
@@ -22,16 +22,28 @@ public class Consumo {
 	@Column(name = "qtd_bebida", nullable = false)
 	private Integer quantidade;
 	
-	@Column(name = "vl_consumo")
+	@Column(name = "vl_consumo", nullable = false)
 	private double valorConsumo;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_comanda")
+	@JoinColumn(name = "id_comanda", nullable = false)
 	private Comanda comanda;
 
 	@ManyToOne
-	@JoinColumn(name = "id_bebida")
+	@JoinColumn(name = "id_bebida", nullable = false)
 	private Bebida bebida;
+
+	public Consumo() {
+		super();
+	}
+
+	public Consumo(Long id, Integer quantidade, Comanda comanda, Bebida bebida) {
+		super();
+		this.id = id;
+		this.quantidade = quantidade;
+		this.comanda = comanda;
+		this.bebida = bebida;
+	}
 
 	public Long getId() {
 		return id;

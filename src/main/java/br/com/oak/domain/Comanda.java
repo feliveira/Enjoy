@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TB_COMANDA5")
+@Table(name = "TB_COMANDA")
 public class Comanda {
 	
 	@Id
@@ -27,7 +27,7 @@ public class Comanda {
 	@Column(name = "dt_comanda", nullable = false)
 	private LocalDate dataComanda;
 	
-	@Column(name = "vl_total")
+	@Column(name = "vl_total", nullable = false)
 	private double valorTotal = 0.0;
 	
 	@JoinColumn(name = "id_cliente")
